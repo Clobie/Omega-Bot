@@ -8,42 +8,8 @@ from discord.ext import tasks
 from datetime import datetime as dt
 import ollama
 import time
-
-# Set up directory structure
-CWD = os.getcwd()
-DIR_INCLUDES = os.path.join(CWD, "includes")
-DIR_COGS = os.path.join(CWD, "cogs")
-DIR_LOGS = os.path.join(CWD, "logs")
-CONFIG_FILE = os.path.join(DIR_INCLUDES, "config.py")
-os.makedirs(DIR_LOGS, exist_ok=True)
-
-# Set up logging
-logging.basicConfig(
-    filename=os.path.join(DIR_LOGS, 'app.log'),
-    level=logging.INFO,
-    format='%(asctime)s:%(levelname)s:%(message)s'
-)
-
-# Logging function
-def log(message, level=logging.INFO):
-    formatted_message = logging.getLogger('').handlers[0].format(
-        logging.makeLogRecord(
-            {'msg': message, 'levelname': logging.getLevelName(level)}
-        )
-    )
-    print(formatted_message)
-    {
-        logging.WARNING: lambda: logging.warning(message),
-        logging.ERROR: lambda: logging.error(message)
-    }.get(level, lambda: logging.info(message))()
-
-
-# Import configuration
-if not os.path.isfile(CONFIG_FILE):
-    log(f"'{CONFIG_FILE}' not found, exiting", logging.ERROR)
-    sys.exit()
-else:
-    from includes import config
+from includes import config
+from includes import logger as log
 
 # Cog class
 class Ollama(commands.Cog):
@@ -77,7 +43,7 @@ class Ollama(commands.Cog):
         # Get streaming message
         stream = ollama.chat(model=self.model, messages=self.chat_messages, stream=True)
         streaming_message = ''
-        with open('loading.gif', 'rb') as f:
+        with open(config.THINKING_GIF, 'rb') as f:
             gif = discord.File(f)
             reply_msg = await message.reply(file=gif)
         
@@ -99,6 +65,6 @@ async def setup(bot):
     cog = Ollama
     try:
         await bot.add_cog(cog(bot))
-        log(f"{cog.__name__} has been loaded successfully.")
+        log.log(f"{cog.__name__} has been loaded successfully.")
     except Exception as e:
-        log(f'Failed to load {cog.__name__}: {str(e)}', level=logging.ERROR)
+        log.log(f'Failed to load {cog.__name__}: {str(e)}', level=logging.ERROR)
