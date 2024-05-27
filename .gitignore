@@ -164,3 +164,6 @@ logs*
 
 # Test files
 test*
+
+# secrets
+config.py
