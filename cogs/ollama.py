@@ -53,7 +53,8 @@ class Ollama(commands.Cog):
         self.system_message = 'You are Omega, an insane AI assistant.  You express your emotions vividly.  Use VERY short and concise responses.'
         self.chat_messages = []
         self.context_pairs = 16
-
+        self.append_message('system', self.system_message)
+        
     def append_message(self, role, content):
         self.chat_messages.append(
             {
