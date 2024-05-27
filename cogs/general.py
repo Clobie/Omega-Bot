@@ -40,16 +40,12 @@ else:
 
 # Cog class
 class General(commands.Cog):
-    """
-    This cog handles various tasks such as event listeners and utility functions.
-    """
     def __init__(self, bot):
         self.bot = bot
     
     # General ping command
     @commands.command(name='ping')
     async def ping(self, ctx):
-        """Responds with 'Pong!' and the bot's latency."""
         latency = self.bot.latency
         await ctx.send(f'Pong! Latency: {latency*1000:.2f} ms')
         log(f'Responded to ping command with latency {latency*1000:.2f} ms')
