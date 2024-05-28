@@ -26,13 +26,12 @@ class General(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
-            #await ctx.send('Command not found.')
             log.log(f'Command not found: {ctx.message.content}', logging.ERROR)
         elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.send('Missing required argument.')
             log.log(f'Missing required argument in command: {ctx.message.content}', logging.ERROR)
         else:
-            await ctx.send('An error occurred.')
+            await ctx.send(f'An error occurred: {str(error)}')
             log.log(f'An error occurred: {str(error)}', logging.ERROR)
             raise error
     

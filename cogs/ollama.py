@@ -16,7 +16,7 @@ class Ollama(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.model = 'dolphin-mistral'
-        self.system_message = 'You are Omega, an insane AI assistant.  You express your emotions vividly.  Use VERY short and concise responses.'
+        self.system_message = 'You are Omega, an AI assistant.  Use VERY short and concise responses.'
         self.chat_messages = []
         self.context_pairs = 16
         self.append_message('system', self.system_message)
@@ -39,10 +39,11 @@ class Ollama(commands.Cog):
         # Get prompt and append to message history
         prompt = message.content.replace(str(f"<@{self.bot.user.id}>"), "").strip()
 
-        if prompt == "clear context":
+        if prompt.strip() == "clear context":
             self.chat_messages = []
             self.append_message('system', self.system_message)
-            prompt = "I've erased your memory."
+            await message.add_reaction("✅")
+            return
         else:
             self.append_message('user', prompt)
 
