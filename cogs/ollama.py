@@ -35,10 +35,16 @@ class Ollama(commands.Cog):
     async def on_message(self, message):
         if (not self.bot.user.mentioned_in(message) or message.author == self.bot.user or message.mention_everyone):
             return
-        
+
         # Get prompt and append to message history
         prompt = message.content.replace(str(f"<@{self.bot.user.id}>"), "").strip()
-        self.append_message('user', prompt)
+
+        if prompt == "clear context":
+            self.chat_messages = []
+            self.append_message('system', self.system_message)
+            prompt = "I've erased your memory."
+        else:
+            self.append_message('user', prompt)
 
         # Get streaming message
         stream = ollama.chat(model=self.model, messages=self.chat_messages, stream=True)

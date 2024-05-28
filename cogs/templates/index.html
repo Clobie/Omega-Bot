@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Bot Message Sender</title>
+</head>
+<body>
+    <h1>Send a Message to Discord Channel</h1>
+    <form id="messageForm">
+        <label for="channel_id">Channel ID:</label><br>
+        <input type="text" id="channel_id" name="channel_id" required><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
+        <input type="button" value="Send" onclick="sendMessage()">
+    </form>
+    <p id="response"></p>
+
+    <script>
+        function sendMessage() {
+            const channel_id = document.getElementById('channel_id').value;
+            const message = document.getElementById('message').value;
+
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ channel_id, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = data.message;
+            })
+            .catch(error => {
+                document.getElementById('response').innerText = 'Error: ' + error.message;
+            });
+        }
+    </script>
+</body>
+</html>
