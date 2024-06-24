@@ -18,7 +18,7 @@ class RandomBeepBoop(commands.Cog, name="beep_boop"):
     def cog_unload(self):
         self.random_channel_task.cancel()
 
-    @tasks.loop(hours=random.randint(3, 6))
+    @tasks.loop(hours=random.randint(12, 24))
     async def random_channel_task(self):
         await self.bot.wait_until_ready()
         channels = self.bot.get_all_channels()

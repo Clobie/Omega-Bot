@@ -1,0 +1,10 @@
+discord
+asyncio
+pillow
+aiohttp
+ollama
+pyqrcode
+requests
+pytube
+moviepy
+flask

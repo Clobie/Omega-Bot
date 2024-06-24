@@ -18,7 +18,7 @@ class WebApp(commands.Cog):
         self.app = Flask(__name__)
         self.thread = Thread(target=self.run_flask)
         self.thread.start()
-
+        
         @self.app.route('/')
         def index():
             return render_template('index.html')
@@ -33,10 +33,10 @@ class WebApp(commands.Cog):
                 return jsonify({"status": "success", "message": "Message sent"}), 200
             else:
                 return jsonify({"status": "error", "message": "Invalid data"}), 400
-
+            
     def run_flask(self):
         self.app.run(host='0.0.0.0', port=5000)
-
+    
     async def send_message_to_channel(self, channel_id, message):
         channel = self.bot.get_channel(int(channel_id))
         if channel:
