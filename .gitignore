@@ -167,4 +167,8 @@ test*
 
 # Secrets
 secret.py
+
+node_modules/
+package-lock.json
+package.json
  
