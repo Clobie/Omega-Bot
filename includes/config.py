@@ -15,6 +15,7 @@ DIR_LOGS = os.path.join(CWD, "logs")
 DIR_COGS = os.path.join(CWD, "cogs")
 DIR_DOWNLOADS = os.path.join(CWD, "downloads")
 DIR_ASSETS = os.path.join(CWD, "assets")
+DIR_SCRIPTS = os.path.join(CWD, "scripts")
 
 os.makedirs(DIR_LOGS, exist_ok=True)
 os.makedirs(DIR_DOWNLOADS, exist_ok=True)

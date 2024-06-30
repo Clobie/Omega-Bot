@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands, tasks
 import subprocess
 import json
+from includes import config
 from includes import logger as log
 
 class GameDig(commands.Cog):
@@ -14,7 +15,7 @@ class GameDig(commands.Cog):
     async def update_status(self):
         try:
             result = subprocess.run(
-                ['node', './includes/digger.js'],
+                ['node', config.DIR_SCRIPTS + '/digger.js'],
                 capture_output=True,
                 text=True,
                 check=True

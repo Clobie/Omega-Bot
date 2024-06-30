@@ -12,12 +12,12 @@ try:
     import secret
     token = secret.BOT_SECRETS_TOKEN
     if not token:
-        print("secret.py already exists but the token is empty.")
+        print("Your secret.py contains an empty token.  Exiting.")
         exit()
 except ImportError:
     with open('secret.py', 'w') as file:
         file.write('BOT_SECRETS_TOKEN = ""\n')
-    print("secret.py file generated.\nPlease put in your token.")
+    print("Missing secret.py has been generated. Please put in your token and relaunch. Exiting.")
     exit()
 
 # Initialize bot
