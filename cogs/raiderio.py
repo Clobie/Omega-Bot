@@ -20,11 +20,12 @@ class RaiderIO(commands.Cog):
         Grabs raider.io character data.
         """
         async with context.typing():
-            guild = requests.get(f"https://classic.raider.io/api/v1/characters/profile?region=us&realm=mankrik&name={msg}&fields=guild")
+
+            guild = requests.get(f"https://classic.raider.io/api/v1/characters/profile?region=us&realm=mankrik&name={msg.capitalize()}&fields=guild")
             guildjs = guild.json()
             character_guild = guildjs['guild']['name']
             character_honorable_kills = guildjs['honorable_kills']
-            data = requests.get(f"https://classic.raider.io/api/v1/characters/profile?region=us&realm=mankrik&name={msg}&fields=gear")
+            data = requests.get(f"https://classic.raider.io/api/v1/characters/profile?region=us&realm=mankrik&name={msg.capitalize()}&fields=gear")
             js = data.json()
             gear = js['gear']['items']
             thumbnail_url = js['thumbnail_url']
