@@ -5,8 +5,8 @@ import discord
 from discord.ext import commands
 from discord.ext import tasks
 from datetime import datetime as dt
-from ..includes import config
-from ..includes import logger as log
+from includes import config
+from includes import logger as log
 
 # Cog class
 class MyCog(commands.Cog):
