@@ -164,5 +164,7 @@ logs*
 
 # Test files
 test*
- 
+
+# Secrets
+secret.py
  

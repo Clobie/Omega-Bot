@@ -8,6 +8,18 @@ from datetime import datetime as dt
 from includes import config
 from includes import logger as log
 
+try:
+    import secret
+    token = secret.BOT_SECRETS_TOKEN
+    if not token:
+        print("secret.py already exists but the token is empty.")
+        exit()
+except ImportError:
+    with open('secret.py', 'w') as file:
+        file.write('BOT_SECRETS_TOKEN = ""\n')
+    print("secret.py file generated.\nPlease put in your token.")
+    exit()
+
 # Initialize bot
 intents = discord.Intents.all()
 bot = Bot(command_prefix=config.BOT_PREFIX, intents=intents)
@@ -35,6 +47,6 @@ async def main():
     async with bot:
         await loadcogs()
         log.log("Waiting for the bot to be ready...")
-        await bot.start(config.BOT_SECRETS_TOKEN)
+        await bot.start(secret.BOT_SECRETS_TOKEN)
 
 asyncio.run(main())
