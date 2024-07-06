@@ -5,7 +5,7 @@ Omega is a Python-based Discord bot designed to provide useful functionality for
 ## Current Features
 
 - **General**: Provides basic functionalities like ping, debugging commands, etc.
-- **gamedig**: Retrieves game server information.
+- **gamedig**: Retrieves my game server information.
 - **help**: Displays a help menu with bot commands.
 - **image_edit**: Can create icons or resize attachments.
 - **qr**: Generates QR codes.
