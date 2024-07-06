@@ -49,7 +49,7 @@ class Ripper(commands.Cog, name="ripper"):
         audio = video.streams.filter(only_audio=True).first()
         size_mb = audio.filesize_mb
         if audio.filesize_mb >= 25:
-            await context.send(f"File too large. Get fuck, nerd. {size_mb}mb")
+            await context.send(f"File too large. {size_mb}mb")
         else:
             await context.send(f"Fetching: {ytlink}")
             out_file = audio.download()
