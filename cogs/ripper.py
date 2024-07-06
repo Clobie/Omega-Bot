@@ -34,7 +34,7 @@ class Ripper(commands.Cog, name="ripper"):
         Youtube audio ripper.
         """
         if not self.is_valid_youtube_url(url):
-            await context.send("Hmm it seems you're a fucking retard, have you tried using an actual youtube link?")
+            await context.send("Have you tried using an actual youtube link?")
             return
 
         ytlink = url.replace('https://', '')
