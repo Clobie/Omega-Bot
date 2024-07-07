@@ -14,7 +14,8 @@ Omega is a Python-based Discord bot designed to provide useful functionality for
 - **reactions**: Reacts to messages randomly.
 - **webapp**: A small web application to send messages as the bot.
 - **ollama**: Ollama integration for LLM generated responses
-- 
+
+
 ## Installation
 
 1. Clone the repository:
