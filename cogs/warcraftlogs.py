@@ -201,9 +201,9 @@ class WCL(commands.Cog):
 
         await ctx.send("Emojis written to file `emojis.txt`!")
 
-    def get_ranking(self, api_key, character, realm, region, metric, timeframe):
-        api_v1_url = "https://classic.warcraftlogs.com:443/v1/rankings/character/{}/{}/{}?&metric={}&timeframe={}&api_key={}".format(
-            character, realm, region, metric, timeframe, api_key
+    def get_ranking(self, api_key, character, realm, region, timeframe):
+        api_v1_url = "https://classic.warcraftlogs.com:443/v1/rankings/character/{}/{}/{}?&metric=dps&timeframe={}&api_key={}".format(
+            character, realm, region, timeframe, api_key
         )
         #api_v1_url = "https://classic.warcraftlogs.com:443/v1/rankings/character/{}/{}/{}?api_key={}".format(
         #    character, realm, region, api_key
@@ -293,14 +293,14 @@ class WCL(commands.Cog):
         return embed
     
     @commands.command(name="wcl")
-    async def wcl(self, context, character:str, metric:str, raid_size:int):
+    async def wcl(self, context, character:str, raid_size:int):
         """
         Grabs classic.warcraftlogs.com character data.
         Syntax: wcl <character> <metric> <size>
         """
         async with context.typing():
             # Query the API
-            data = self.get_ranking( token.WCL_API_TOKEN, f"{character}", "mankrik", "us", f"{metric}", "historical")
+            data = self.get_ranking( token.WCL_API_TOKEN, f"{character}", "mankrik", "us", "historical")
 
             # Error checking
             if "error" in data:
