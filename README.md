@@ -13,6 +13,8 @@ Omega is a Python-based Discord bot designed to provide useful functionality for
 - **raiderio**: Fetches World of Warcraft Classic character stats and gear from raider.io.
 - **reactions**: Reacts to messages randomly.
 - **webapp**: A small web application to send messages as the bot.
+- **ollama**: Ollama integration for LLM generated responses
+
 
 ## Installation
 
